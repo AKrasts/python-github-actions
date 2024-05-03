@@ -2,9 +2,11 @@ runs:
   using: "composite"
   steps:
     - name: --- Install pip deps ---
+      working-directory: python-test
       run: echo Installing pip dependencies is starting ...
       shell: bash
       
     - name: Install dependencies
+      working-directory: python-test
       run: pip install -r requirements.txt
       shell: bash
