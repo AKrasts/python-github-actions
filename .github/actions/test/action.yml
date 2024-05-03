@@ -10,17 +10,15 @@ runs:
       run: echo Testing on ${{ inputs.enviroment }} has started ...
       shell: bash
 
-    # - name: Install dependencies and run REST API test
-    #   working-directory: api-tests
-    #   run: |
-    #     echo Testing book test set on ${{ inputs.enviroment }} has started ..
-    #     npm install
-    #     npm run books ${{ inputs.enviroment }}
-    #   shell: cmd
-    # - name: Upload report as artifact
-    # - uses: actions/upload-artifact@4.3.2
-    #   with:
-    #     - name: test-report
-    #       path: api-tests/mochawesome-report
+    - name: Install dependencies and run REST API test
+      working-directory: python-test
+      run: |
+        npm install
+      shell: bash
 
+    - name: Run greetings test
+      working-directory: python-test
+      run: |
+        npm run greetings greetings_${{ inputs.enviroment }}
+      shell: bash
  
