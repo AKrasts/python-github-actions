@@ -7,7 +7,7 @@ runs:
   steps:
     - name: Print output
       run: echo Testing on ${{ inputs.enviroment }} has started ...
-      shell: cmd
+      shell: bash
 
     # - name: Install dependencies and run REST API test
     #   working-directory: api-tests

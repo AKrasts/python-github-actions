@@ -18,7 +18,7 @@ jobs:
 
   install-pip-deps:
     name: install-pip-deps
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +31,7 @@ jobs:
 
   deploy-dev:
     name: Deploy DEV
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: [install-pip-deps]
     
     steps:
@@ -47,7 +47,7 @@ jobs:
 
   tests-dev:
     name: Tests DEV
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: [deploy-dev]
 
     steps:
@@ -62,7 +62,7 @@ jobs:
   
   deploy-stg:
     name: Deploy STG
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: [tests-dev]
 
     steps:
@@ -78,7 +78,7 @@ jobs:
 
   tests-stg:
     name: Tests STG
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: [deploy-stg]
 
     steps:
@@ -93,7 +93,7 @@ jobs:
 
   deploy-preprd:
     name: Deploy PREPRD
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: [tests-stg]
     
     steps:
@@ -109,7 +109,7 @@ jobs:
 
   tests-preprd:
     name: Tests PREPRD
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: [deploy-preprd]
     
     steps:
@@ -126,7 +126,7 @@ jobs:
 
   deploy-prd:
     name: Deploy PRD
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: [tests-preprd]
     
     steps:
@@ -142,7 +142,7 @@ jobs:
 
   tests-prd:
     name: Tests PRD
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: [deploy-prd]
     
     steps:

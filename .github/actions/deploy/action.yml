@@ -10,16 +10,16 @@ runs:
   steps:
     - name: Print output
       run: echo Deployment to ${{ inputs.enviroment }} has started ...
-      shell: cmd
+      shell: bash
 
     - name: Install dependencies
       run: npm install
-      shell: cmd
+      shell: bash
 
     - name: Install pm2
       run: npm install -g pm2
-      shell: cmd
+      shell: bash
 
     - name: Start services
       run: pm2 start app.py --name ${{ inputs.enviroment }} -- --port ${{ inputs.port }}
-      shell: cmd
+      shell: bash
