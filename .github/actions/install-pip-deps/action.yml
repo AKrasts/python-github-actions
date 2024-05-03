@@ -1,0 +1,10 @@
+runs:
+  using: "composite"
+  steps:
+    - name: --- Install pip deps ---
+      run: echo Installing pip dependencies is starting ...
+      shell: cmd
+      
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+      shell: cmd

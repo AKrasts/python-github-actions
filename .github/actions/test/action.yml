@@ -1,0 +1,25 @@
+inputs:
+  enviroment:
+    description: 'Enviroment for node application'
+    default: 'DEV'
+runs:
+  using: "composite"
+  steps:
+    - name: Print output
+      run: echo Testing on ${{ inputs.enviroment }} has started ...
+      shell: cmd
+
+    # - name: Install dependencies and run REST API test
+    #   working-directory: api-tests
+    #   run: |
+    #     echo Testing book test set on ${{ inputs.enviroment }} has started ..
+    #     npm install
+    #     npm run books ${{ inputs.enviroment }}
+    #   shell: cmd
+    # - name: Upload report as artifact
+    # - uses: actions/upload-artifact@4.3.2
+    #   with:
+    #     - name: test-report
+    #       path: api-tests/mochawesome-report
+
+ 

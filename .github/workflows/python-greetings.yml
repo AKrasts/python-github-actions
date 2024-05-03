@@ -16,25 +16,33 @@ on:
 
 jobs:
 
-  build:
-    name: Build
+  install-pip-deps:
+    name: install-pip-deps
     runs-on: self-hosted
     
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/build
+      - uses: actions/checkout@v4
+        with:
+          repository: 'AKrasts/python-greetings'
+          path: 'python-test'
+      - uses: ./.github/actions/install-pip-deps
 
 
   deploy-dev:
     name: Deploy DEV
     runs-on: self-hosted
-    needs: [build]
+    needs: [install-pip-deps]
     
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: 'AKrasts/python-greetings'
+          path: 'python-test'
       - uses: ./.github/actions/deploy
         with:
-          port: 2345
+          port: 7001
           enviroment: 'DEV'
 
   tests-dev:
@@ -46,8 +54,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
-          repository: 'AKrasts/api-automation'
-          path: 'api-tests'
+          repository: 'AKrasts/python-greetings'
+          path: 'python-test'
       - uses: ./.github/actions/test
         with:
           enviroment: 'DEV'
@@ -59,9 +67,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: 'AKrasts/python-greetings'
+          path: 'python-test'
       - uses: ./.github/actions/deploy
         with:
-          port: 6789
+          port: 7002
           enviroment: 'STG'
 
   tests-stg:
@@ -73,22 +85,59 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
-          repository: 'AKrasts/api-automation'
-          path: 'api-tests'
+          repository: 'AKrasts/python-greetings'
+          path: 'python-test'
       - uses: ./.github/actions/test
         with:
           enviroment: 'STG'
 
-  deploy-prd:
-    name: Deploy PRD
+  deploy-preprd:
+    name: Deploy PREPRD
     runs-on: self-hosted
     needs: [tests-stg]
     
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: 'AKrasts/python-greetings'
+          path: 'python-test'
       - uses: ./.github/actions/deploy
         with:
-          port: 1111
+          port: 7003
+          enviroment: 'PREPRD'
+
+  tests-preprd:
+    name: Tests PREPRD
+    runs-on: self-hosted
+    needs: [deploy-preprd]
+    
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: 'AKrasts/python-greetings'
+          path: 'python-test'
+      - uses: ./.github/actions/test
+        with:
+          enviroment: 'PREPRD'
+        
+                
+
+  deploy-prd:
+    name: Deploy PRD
+    runs-on: self-hosted
+    needs: [tests-preprd]
+    
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: 'AKrasts/python-greetings'
+          path: 'python-test'
+      - uses: ./.github/actions/deploy
+        with:
+          port: 7004
           enviroment: 'PRD'
 
   tests-prd:
@@ -100,8 +149,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
-          repository: 'AKrasts/api-automation'
-          path: 'api-tests'
+          repository: 'AKrasts/python-greetings'
+          path: 'python-test'
       - uses: ./.github/actions/test
         with:
           enviroment: 'PRD'

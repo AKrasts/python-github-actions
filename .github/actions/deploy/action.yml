@@ -1,0 +1,25 @@
+inputs:
+  port:
+    description: 'Port for node application to run'
+    default: 1010
+  enviroment:
+    description: 'Enviroment for node application'
+    default: 'DEV'
+runs:
+  using: "composite"
+  steps:
+    - name: Print output
+      run: echo Deployment to ${{ inputs.enviroment }} has started ...
+      shell: cmd
+
+    - name: Install dependencies
+      run: npm install
+      shell: cmd
+
+    - name: Install pm2
+      run: npm install -g pm2
+      shell: cmd
+
+    - name: Start services
+      run: pm2 start app.py --name ${{ inputs.enviroment }} -- --port ${{ inputs.port }}
+      shell: cmd
