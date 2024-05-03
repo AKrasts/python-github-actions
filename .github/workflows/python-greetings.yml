@@ -36,8 +36,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: actions/checkout@v4
         with:
+          clean: false
           repository: 'AKrasts/python-greetings'
           path: 'python-deploy'
       - uses: ./.github/actions/deploy
@@ -52,8 +55,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: actions/checkout@v4
         with:
+          clean: false
           repository: 'AKrasts/course-js-api-framework'
           path: 'python-test'
       - uses: ./.github/actions/test
@@ -67,8 +73,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: actions/checkout@v4
         with:
+          clean: false
           repository: 'AKrasts/python-greetings'
           path: 'python-deploy'
       - uses: ./.github/actions/deploy
@@ -83,8 +92,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: actions/checkout@v4
         with:
+          clean: false
           repository: 'AKrasts/course-js-api-framework'
           path: 'python-test'
       - uses: ./.github/actions/test
@@ -98,8 +110,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: actions/checkout@v4
         with:
+          clean: false
           repository: 'AKrasts/python-greetings'
           path: 'python-deploy'
       - uses: ./.github/actions/deploy
@@ -114,8 +129,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: actions/checkout@v4
         with:
+          clean: false
           repository: 'AKrasts/course-js-api-framework'
           path: 'python-test'
       - uses: ./.github/actions/test
@@ -131,8 +149,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: actions/checkout@v4
         with:
+          clean: false
           repository: 'AKrasts/python-greetings'
           path: 'python-deploy'
       - uses: ./.github/actions/deploy
@@ -147,8 +168,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: actions/checkout@v4
         with:
+          clean: false
           repository: 'AKrasts/course-js-api-framework'
           path: 'python-test'
       - uses: ./.github/actions/test
