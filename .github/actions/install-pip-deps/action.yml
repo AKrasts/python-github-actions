@@ -4,9 +4,9 @@ runs:
     - name: --- Install pip deps ---
       working-directory: python-deploy
       run: echo Installing pip dependencies is starting ...
-      shell: bash
+      shell: cmd
       
     - name: Install dependencies
       working-directory: python-deploy
       run: pip install -r requirements.txt
-      shell: bash
+      shell: cmd

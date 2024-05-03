@@ -8,17 +8,17 @@ runs:
     - name: Print output
       working-directory: python-test
       run: echo Testing on ${{ inputs.enviroment }} has started ...
-      shell: bash
+      shell: cmd
 
     - name: Install dependencies and run REST API test
       working-directory: python-test
       run: |
         npm install
-      shell: bash
+      shell: cmd
 
     - name: Run greetings test
       working-directory: python-test
       run: |
         npm run greetings greetings_${{ inputs.enviroment }}
-      shell: bash
+      shell: cmd
  
